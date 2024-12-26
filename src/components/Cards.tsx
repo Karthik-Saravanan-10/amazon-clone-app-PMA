@@ -8,6 +8,8 @@ const Card = () => {
   const outerContainerRef = createRef<HTMLDivElement | null>();
 
   function scrollLeft() {
+    
+    console.log("left");
     outerContainerRef.current?.scrollBy(
       -outerContainerRef.current.clientWidth,
       0
@@ -15,6 +17,7 @@ const Card = () => {
   }
 
   function scrollRight() {
+    console.log("right");
     outerContainerRef.current?.scrollBy(
       outerContainerRef.current.clientWidth,
       0
@@ -29,6 +32,7 @@ const Card = () => {
     const observer = new ResizeObserver(() => {});
     observer.observe(innerContainer);
     observer.observe(outerContainer);
+    console.log("clicked");
 
     return () => observer.disconnect();
   }, [innerContainerRef.current, outerContainerRef.current]);

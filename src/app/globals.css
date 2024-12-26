@@ -35,10 +35,14 @@ body {
   content: "";
   position: absolute;
   border: 9px solid;
-  left: 45px;
+  left: 66px;
   z-index: -1;
   padding: 1px;
   border-color: #3e4650 transparent #3e4650 transparent;
+}
+
+.tr-10::before{
+  left: 63px !important;
 }
 
 .border-tri-orange {

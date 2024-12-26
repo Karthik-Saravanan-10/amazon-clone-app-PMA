@@ -1,5 +1,8 @@
+import Card from "@/components/Cards";
+import FetchData from "@/components/FetchData";
 import HeaderPage from "@/components/HeaderPage";
 import { homePageSideNavCategory } from "@/components/lists/informations";
+import Services from "@/components/Services";
 import Starcount from "@/components/Starcount";
 //import masterArray from "@/store/store";
 
@@ -22,40 +25,53 @@ export default async function Dashboard({ params }: any) {
           })}
         </div>
       </header>
-      <main>
+      <main className="mb-10">
         <p className="text-xs tracking-wide mt-2">
           Electronics›Mobiles & Accessories›Smartphones & Basic
           Mobiles›Smartphones
         </p>
 
-        <div className="flex gap-28">
-          <div className="ml-10 mt-14">
-            <div className="float-right">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
-                />
-              </svg>
+        <div className="flex gap-16">
+          <div className="flex mt-10 gap-8">
+            <div className="ml-2 mt-10 ">
+              {Array(Math.round(fetchSingleData[0].rating?.rate))
+                .fill(fetchSingleData[0].image)
+                .map((elem) => {
+                  return (
+                    <div className="p-3 rounded-xl border-2 mt-5">
+                      <img src={elem} alt="" height={25} width={25} />
+                    </div>
+                  );
+                })}
             </div>
             <div>
-              <img
-                src={fetchSingleData[0]?.image}
-                className="h-[700px]"
-                alt=""
-              />
+              <div className="float-right mb-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
+                  />
+                </svg>
+              </div>
+              <div className="sticky top-0">
+                <img
+                  src={fetchSingleData[0]?.image}
+                  className="h-[700px] w-[520px]"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
 
-          <div className="w-96 mt-10 ">
+          <div className="w-96 mt-8 ">
             <h1 className="text-4xl">
               {fetchSingleData[0]?.title + fetchSingleData[0]?.category}
             </h1>
@@ -68,7 +84,7 @@ export default async function Dashboard({ params }: any) {
                 {fetchSingleData[0]?.rating.rate}
               </p>
               <div className="flex">
-                {Array(Math.round(fetchSingleData[0]?.rating.rate))
+                {Array(Math.round(fetchSingleData[0]?.rating?.rate))
                   .fill(<Starcount />)
                   .map((_, i) => (
                     <Starcount />
@@ -99,19 +115,26 @@ export default async function Dashboard({ params }: any) {
                 <p className="text-3xl">
                   <sup className="text-sm">₹</sup>
                   {Math.round(
-                    fetchSingleData[0]?.price * 100 -
-                      fetchSingleData[0]?.price * 100 * 0.17
+                    fetchSingleData[0]?.price * 10 -
+                      fetchSingleData[0]?.price * 10 * 0.17
                   )}
                 </p>
               </div>
               <p className="text-[#565959] text-xs font-semibold tracking-wide">
-                M.R.P.:<del>{fetchSingleData[0]?.price * 100}</del>
+                M.R.P.:<del>{Math.round(fetchSingleData[0]?.price * 10)}</del>
               </p>
             </div>
 
             <div className="mt-3 mb-1 text-sm font-medium tracking-wide">
-              <div className="bg-[#3e4650] w-fit px-1 border-triangle">
-                <img src="./src/components/amazon-logo.png" alt="" />
+              <div className="flex items-center bg-[#3e4650] w-fit px-1 border-triangle gap-1">
+                <img
+                  src={
+                    "https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg"
+                  }
+                  alt=""
+                  width={15}
+                  height={15}
+                />
                 <p className="text-white">Fulfilled</p>
               </div>
               <p>Inclusive of all taxes</p>
@@ -232,11 +255,130 @@ export default async function Dashboard({ params }: any) {
 
             {/* icons div */}
 
-            <div></div>
+            <div>
+              <Services />
+            </div>
+
+            <div className="flex flex-col mt-5">
+              <h1 className="font-bold text-xl">About</h1>
+              <ul className="ml-5">
+                {fetchSingleData[0]?.description
+                  .split(",")
+                  .map((elem: string) => {
+                    return <li className="list-disc">{elem}</li>;
+                  })}
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-2 mt-12 py-2 pr-5 pl-5 w-[250px] rounded-lg h-fit">
+            <p className="text-3xl mb-1">
+              <sup className="text-sm">₹</sup>
+              {Math.round(
+                fetchSingleData[0]?.price * 10 -
+                  fetchSingleData[0]?.price * 10 * 0.17
+              )}
+            </p>
+            <div className="flex items-center bg-[#3e4650] w-fit px-1 border-triangle tr-10 text-sm gap-1 ">
+              <img
+                src={
+                  "https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg"
+                }
+                alt=""
+                width={15}
+                height={15}
+              />
+              <p className="text-white">Fulfilled</p>
+            </div>
+            <p className="tracking-wide">
+              <span className="underline text-cyan-700">FREE delivery</span>{" "}
+              <b>Wednesday, 1 January</b> on your first order.
+            </p>
+            <a className="text-cyan-700 underline mt-2">Details</a>
+            <div className="flex gap-2 mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
+              <p className="text-sm  text-cyan-700 ">
+                Deliver to Geetha - Chennai 600117
+              </p>
+            </div>
+
+            <div className="flex flex-col text-[13px] mt-2">
+              <h2 className="text-xl text-green-600">In Stock</h2>
+              <div className="flex gap-3">
+                <p className="text-[#565959]">Payment</p>
+                <p className="text-cyan-700 ">Secure Transaction</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="text-[#565959]">Ships from</p>
+                <p>Amazon</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="text-[#565959] ">Sold by</p>
+                <p className="text-cyan-700 ">Clicktech Retail Private Ltd</p>
+              </div>
+            </div>
+
+            <div className="text-base mt-4">
+              <p className="font-bold">Add a Protection Plan:</p>
+              <div className="flex gap-2 items-baseline">
+                <input type="checkbox" />
+                <p>
+                  <span className="text-cyan-600">Extended Warranty</span> for{" "}
+                  <span className="text-red-600">₹125.00</span>
+                </p>
+              </div>
+              <div>
+                <select className="w-44 border-2 rounded h-8 bg-[#d5d9d9] p-1 text-sm">
+                  <option value="">Quantity:1</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 mt-3 text-sm">
+              <button className="bg-yellow-300 rounded-xl py-1">
+                Add to Cart
+              </button>
+              <button className="bg-orange-500 rounded-xl py-1">Buy Now</button>
+            </div>
+
+            <div className="flex mt-3 gap-2 justify-center border-b-2">
+              <input type="checkbox" />
+              <p>Add gift options</p>
+            </div>
+
+            <div className="flex justify-center">
+              <select className="w-44 border-2 mt-2 rounded h-8 bg-transparent p-1 text-sm">
+                <option value="">Add to Whitelist</option>
+              </select>
+            </div>
+            <div className="mt-3 h-[340px] overflow-hidden">
+              <FetchData />
+            </div>
           </div>
         </div>
       </main>
-      <p>{parameter.slug}</p>
     </>
   );
 }

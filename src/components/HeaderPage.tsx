@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ama from "@/components/amazon-logo.png"
+import amazonLogo from "@/components/amazon-logo.png"
 
 export default function HeaderPage() {
   return (
@@ -9,7 +9,7 @@ export default function HeaderPage() {
         <div className="topHeader  p-2 flex text-white bg-black gap-5">
           <div className="flex pr-2 items-start">
             <Image
-              src={ama}
+              src={amazonLogo}
               alt="amzon logo"
               className="w-full h-12 bg-black"
             />
@@ -96,7 +96,8 @@ export default function HeaderPage() {
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png"
                 alt=""
-                className="w-7 h-6"
+                width={21}
+                height={18}
               />
               <p>
                 <strong>EN</strong>

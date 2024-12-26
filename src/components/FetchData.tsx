@@ -1,12 +1,22 @@
 import Starcount from "@/components/Starcount";
-import masterArray  from "@/store/store";
 import Link from "next/link";
-import { useId } from "react";
+
+interface ResponseData {
+  id: number;
+  title: string;
+  price: number;
+  description: string | number;
+  category: string;
+  image: string;
+  rating: { rate: number; count: number };
+}
 
 const FetchData = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const responeData = await res.json();
-  //const fetchData = responeData.products;
+  const res = await fetch("https://fakestoreapi.com/products", {
+    next: { revalidate: 2 },
+  });
+  const responeData:ResponseData[] = await res.json();
+
   return (
     <>
       {responeData?.map((elem: any) => {
@@ -28,13 +38,15 @@ const FetchData = async () => {
                 {Array(Math.round(elem.rating.rate))
                   .fill(<Starcount />)
                   .map((_, i) => (
-                    <Starcount />
+                    <div key={i}>
+                      <Starcount />
+                    </div>
                   ))}
               </div>
               <p>{" " + elem.rating.count}</p>
             </div>
             <div className="text-[#b12704] text-sm mt-1 hover:text-red-600">
-              <Link href={`${elem.id}`}>{"₹" + elem.price} </Link>
+              <Link href={`${elem.id}`}>{"₹" + elem.price * 10} </Link>
             </div>
           </div>
         );
