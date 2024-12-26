@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+/* @tailwind components; */
 @tailwind utilities;
 
 :root {
@@ -17,5 +17,41 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  max-width: 100%;
+}
+
+.max-width {
+  /* max-width: calc(100vw - 150px); */
+  max-width: calc(90vw - 192px);
+}
+
+.border-triangle {
+  position: relative;
+  border-color: #3e4650;
+}
+
+.border-triangle::before {
+  content: "";
+  position: absolute;
+  border: 9px solid;
+  left: 45px;
+  z-index: -1;
+  padding: 1px;
+  border-color: #3e4650 transparent #3e4650 transparent;
+}
+
+.border-tri-orange {
+  position: relative;
+  border-color: #ff9900;
+}
+
+.border-tri-orange::before {
+  content: "";
+  position: absolute;
+  border: 9px solid;
+  left: 53px;
+  z-index: -1;
+  padding: 1px;
+  border-color: #ff9900 transparent #ff9900 transparent;
 }
