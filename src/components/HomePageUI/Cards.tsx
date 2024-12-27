@@ -1,14 +1,25 @@
 "use client";
 
-import { createRef, useEffect, useId } from "react";
-import FetchData from "@/components/FetchData";
+import { createRef, useEffect, useState } from "react";
+import FetchData from "@/components/HomePageUI/FetchData";
+
+interface ResponseData {
+  id: number;
+  title: string;
+  price: number;
+  description: string | number;
+  category: string;
+  image: string;
+  rating: { rate: number; count: number };
+}
 
 const Card = () => {
   const innerContainerRef = createRef<HTMLDivElement | null>();
   const outerContainerRef = createRef<HTMLDivElement | null>();
+  const [value, setValue] = useState<ResponseData[]>();
+  const [ismount, setMount] = useState(false);
 
   function scrollLeft() {
-    
     console.log("left");
     outerContainerRef.current?.scrollBy(
       -outerContainerRef.current.clientWidth,
@@ -25,6 +36,17 @@ const Card = () => {
   }
 
   useEffect(() => {
+    let getData = async () => {
+      const res = await fetch("https://fakestoreapi.com/products");
+      const responeData: ResponseData[] = await res.json();
+      setValue(responeData);
+      setMount(true);
+    };
+
+    getData();
+  }, []);
+
+  useEffect(() => {
     const innerContainer = innerContainerRef.current;
     const outerContainer = outerContainerRef.current;
     if (!outerContainer || !innerContainer) return;
@@ -34,8 +56,18 @@ const Card = () => {
     observer.observe(outerContainer);
     console.log("clicked");
 
+    setMount(true);
+
     return () => observer.disconnect();
   }, [innerContainerRef.current, outerContainerRef.current]);
+
+  if (!ismount) {
+    return (
+      <div className="text-center mt-3">
+        <p>Loading....</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center gap-4">
@@ -50,7 +82,7 @@ const Card = () => {
           className="flex gap-4 mt-5 "
           ref={innerContainerRef as React.RefObject<HTMLDivElement>}
         >
-          <FetchData />
+          <FetchData value={value} />
         </div>
       </div>
       <div className="p-2 rounded-lg border-2 border-gray-300">

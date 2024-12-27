@@ -1,5 +1,7 @@
-import Starcount from "@/components/Starcount";
+"use client";
+import Starcount from "@/components/HomePageUI/Starcount";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface ResponseData {
   id: number;
@@ -11,15 +13,10 @@ interface ResponseData {
   rating: { rate: number; count: number };
 }
 
-const FetchData = async () => {
-  const res = await fetch("https://fakestoreapi.com/products", {
-    next: { revalidate: 2 },
-  });
-  const responeData:ResponseData[] = await res.json();
-
+const FetchData = ({value}:any) => {
   return (
     <>
-      {responeData?.map((elem: any) => {
+      {value?.map((elem: any) => {
         return (
           <div className="min-w-56 max-w-56" key={elem.id}>
             <p className="bg-orange-500 w-fit px-2 text-white mb-4">
@@ -46,7 +43,7 @@ const FetchData = async () => {
               <p>{" " + elem.rating.count}</p>
             </div>
             <div className="text-[#b12704] text-sm mt-1 hover:text-red-600">
-              <Link href={`${elem.id}`}>{"₹" + elem.price * 10} </Link>
+              <Link href={`${elem.id}`}>{"₹" + (elem.price * 10).toFixed(2)} </Link>
             </div>
           </div>
         );

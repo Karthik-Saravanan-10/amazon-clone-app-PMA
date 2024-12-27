@@ -1,10 +1,10 @@
 import Image from "next/image";
-import amazonLogo from "@/components/amazon-logo.png"
+import amazonLogo from "@/components/images/amazon-logo.png";
 
 export default function HeaderPage() {
   return (
     <>
-      <main className="w-full ">
+      <div className="w-full ">
         {/* 1st header */}
         <div className="topHeader  p-2 flex text-white bg-black gap-5">
           <div className="flex pr-2 items-start">
@@ -65,13 +65,15 @@ export default function HeaderPage() {
               </svg>
             </div>
 
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Search Amazon.in"
-              className="pl-3 p-2 w-3/4"
-            />
+            <div>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Search Amazon.in"
+                className="pl-3 p-2 w-[645px]"
+              />
+            </div>
 
             <div className="pl-2 p-2 bg-orange-400 rounded-e-lg">
               <svg
@@ -91,7 +93,7 @@ export default function HeaderPage() {
             </div>
           </div>
 
-          <div className="flex ml-[-75px] gap-7">
+          <div className="flex gap-7">
             <div className="flex items-center gap-1">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png"
@@ -153,8 +155,8 @@ export default function HeaderPage() {
 
         {/* second header */}
 
-        <div className="bg-[#232f3e] font-medium text-sm  text-white pl-3 p-2 flex items-center">
-          <div className="flex gap-2 mx-1 px-3 items-center">
+        <div className="bg-[#232f3e] font-medium text-sm  text-white pl-3 p-2 flex gap-5 items-center">
+          <div className="flex gap-2 mx-1  items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -173,7 +175,7 @@ export default function HeaderPage() {
             <p>All</p>
           </div>
 
-          <div className="flex gap-1 px-3 items-center">
+          <div className="flex gap-1  items-center">
             <p>Freash</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -191,12 +193,12 @@ export default function HeaderPage() {
             </svg>
           </div>
 
-          <p className="px-3">Mx Player</p>
-          <p className="px-3">Sell</p>
-          <p className="px-3">Gift Cards</p>
-          <p className="px-3">Buy Again</p>
-          <p className="px-3">Baby</p>
-          <div className="flex px-3 items-center">
+          <p className="">Mx Player</p>
+          <p className="">Sell</p>
+          <p className="">Gift Cards</p>
+          <p className="">Buy Again</p>
+          <p className="">Baby</p>
+          <div className="flex  items-center">
             <p>Browsing History</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,14 +216,15 @@ export default function HeaderPage() {
             </svg>
           </div>
 
-          <p className="px-3">Subscribe& Save</p>
-          <p className="px-3">Gourment Foods</p>
-          <p className="px-3">Pet Suppiles</p>
-          <p className="px-3">Health,Household & Personal Care</p>
-          <p className="px-3">Toys & Games</p>
+          <p className="">Subscribe& Save</p>
+          <p className="">Gourment Foods</p>
+          <p className="">Pet Suppiles</p>
+          <p className="">Health,Household & Personal Care</p>
+          <p className="">Toys & Games</p>
+          <p className="">Mobiles</p>
+          <p className="">Books</p>
         </div>
-      </main>
-      
+      </div>
     </>
   );
 }

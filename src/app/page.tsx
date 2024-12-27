@@ -1,9 +1,10 @@
-import Card from "@/components/Cards";
-import HeaderPage from "@/components/HeaderPage";
+import Card from "@/components/HomePageUI/Cards";
+import HeaderPage from "@/components/HomePageUI/HeaderPage";
 import {
   homePageCategory,
   homePageSideNavCategory,
 } from "@/components/lists/informations";
+//import dynamic from "next/dynamic";
 
 export default function Home() {
   return (
@@ -11,11 +12,11 @@ export default function Home() {
       <header>
         <HeaderPage />
         <div className="bottomHeader border-b-2 mx-4">
-          <div className="h-10 ml-6  flex items-center gap-10 font-bold text-sm">
-            {homePageCategory.map((p) => {
-              return <p>{p}</p>;
-            })}
-          </div>
+            <ul className="h-10 ml-6  flex items-center gap-10 font-bold text-sm">
+              {homePageCategory.map((p) => {
+                return <li key={p}>{p}</li>;
+              })}
+            </ul>
         </div>
       </header>
 
@@ -25,7 +26,7 @@ export default function Home() {
           Our bestselling new and future releases. Updated frequently.
         </p>
         <div className="flex">
-          <section className="flex">
+          <div className="flex">
             <div className="w-48 border-r-4 text-sm mt-4 leading-6">
               <p>
                 <b>Any Department</b>
@@ -36,8 +37,8 @@ export default function Home() {
                 })}
               </div>
             </div>
-          </section>
-          <section className="m-4 flex flex-col gap-10">
+          </div>
+          <div className="m-4 flex flex-col gap-10">
             <div className="">
               <div className="flex gap-2 items-center">
                 <h1 className="font-bold  text-3xl">
@@ -67,7 +68,7 @@ export default function Home() {
               </div>
               <Card />
             </div>
-          </section>
+          </div>
         </div>
       </main>
     </>

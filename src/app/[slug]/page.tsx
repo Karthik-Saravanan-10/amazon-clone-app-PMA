@@ -1,12 +1,16 @@
-import Card from "@/components/Cards";
-import FetchData from "@/components/FetchData";
-import HeaderPage from "@/components/HeaderPage";
+import Card from "@/components/HomePageUI/Cards";
+import FetchData from "@/components/HomePageUI/FetchData";
+import FilterRequirements from "@/components/dashboard/FilterRequirements";
+import HeaderPage from "@/components/HomePageUI/HeaderPage";
 import { homePageSideNavCategory } from "@/components/lists/informations";
-import Services from "@/components/Services";
-import Starcount from "@/components/Starcount";
+import Services from "@/components/dashboard/Services";
+import Starcount from "@/components/HomePageUI/Starcount";
+import { useId } from "react";
 //import masterArray from "@/store/store";
+import Link from "next/link";
 
 export default async function Dashboard({ params }: any) {
+  const random = useId();
   const parameter = await params;
   const res = await fetch("https://fakestoreapi.com/products");
   const responeData = await res.json();
@@ -34,7 +38,7 @@ export default async function Dashboard({ params }: any) {
         <div className="flex gap-16">
           <div className="flex mt-10 gap-8">
             <div className="ml-2 mt-10 ">
-              {Array(Math.round(fetchSingleData[0].rating?.rate))
+              {Array(Math.round(fetchSingleData[0]?.rating?.rate))
                 .fill(fetchSingleData[0].image)
                 .map((elem) => {
                   return (
@@ -76,7 +80,7 @@ export default async function Dashboard({ params }: any) {
               {fetchSingleData[0]?.title + fetchSingleData[0]?.category}
             </h1>
             <p className="text-cyan-700">
-              Visit the {fetchSingleData[0]?.category} Store
+              {`Visit the ${fetchSingleData[0]?.category} Store`}
             </p>
 
             <div className="flex gap-2 items-center border-b-2 pb-1 text-sm text-cyan-700">
@@ -164,7 +168,9 @@ export default async function Dashboard({ params }: any) {
               <p className="bg-[#ff9900] font-bold px-1 rounded-l border-tri-orange">
                 Coupon:
               </p>
-              <input type="checkbox" />
+              <div>
+                <input type="checkbox" id="checkbox-1" />
+              </div>
               <p>Apply ₹1000 coupon </p>
               <a className="underline text-cyan-900">Terms</a>
               <p>|</p>
@@ -259,6 +265,10 @@ export default async function Dashboard({ params }: any) {
               <Services />
             </div>
 
+            <div className="mt-2">
+              <FilterRequirements category={fetchSingleData[0]?.category} />
+            </div>
+
             <div className="flex flex-col mt-5">
               <h1 className="font-bold text-xl">About</h1>
               <ul className="ml-5">
@@ -339,14 +349,19 @@ export default async function Dashboard({ params }: any) {
             <div className="text-base mt-4">
               <p className="font-bold">Add a Protection Plan:</p>
               <div className="flex gap-2 items-baseline">
-                <input type="checkbox" />
+                <div>
+                  <input type="checkbox" id="checkbox-2" />
+                </div>
                 <p>
                   <span className="text-cyan-600">Extended Warranty</span> for{" "}
                   <span className="text-red-600">₹125.00</span>
                 </p>
               </div>
               <div>
-                <select className="w-44 border-2 rounded h-8 bg-[#d5d9d9] p-1 text-sm">
+                <select
+                  className="w-44 border-2 rounded h-8 bg-[#d5d9d9] p-1 text-sm"
+                  id="selectBox-2"
+                >
                   <option value="">Quantity:1</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -360,21 +375,30 @@ export default async function Dashboard({ params }: any) {
               <button className="bg-yellow-300 rounded-xl py-1">
                 Add to Cart
               </button>
-              <button className="bg-orange-500 rounded-xl py-1">Buy Now</button>
+              <Link href={`${fetchSingleData[0].id}/checkout`} className="bg-orange-500 rounded-xl py-1 text-center">
+                <button>
+                  Buy Now
+                </button>
+              </Link>
             </div>
 
             <div className="flex mt-3 gap-2 justify-center border-b-2">
-              <input type="checkbox" />
+              <div>
+                <input type="checkbox" id="checkbox-3" />
+              </div>
               <p>Add gift options</p>
             </div>
 
             <div className="flex justify-center">
-              <select className="w-44 border-2 mt-2 rounded h-8 bg-transparent p-1 text-sm">
+              <select
+                className="w-44 border-2 mt-2 rounded h-8 bg-transparent p-1 text-sm"
+                id="selectBox-1"
+              >
                 <option value="">Add to Whitelist</option>
               </select>
             </div>
             <div className="mt-3 h-[340px] overflow-hidden">
-              <FetchData />
+              <FetchData value={fetchSingleData} />
             </div>
           </div>
         </div>
