@@ -1,10 +1,10 @@
-import Card from "@/components/HomePageUI/Cards";
-import HeaderPage from "@/components/HomePageUI/HeaderPage";
+import Card from "@/components/HomepageUI/Cards";
+import HeaderPage from "@/components/HomepageUI/HeaderPage";
 import {
   homePageCategory,
   homePageSideNavCategory,
 } from "@/components/lists/informations";
-//import dynamic from "next/dynamic";
+import { GridList } from "@/components/lists/informations";
 
 export default function Home() {
   return (
@@ -12,11 +12,11 @@ export default function Home() {
       <header>
         <HeaderPage />
         <div className="bottomHeader border-b-2 mx-4">
-            <ul className="h-10 ml-6  flex items-center gap-10 font-bold text-sm">
-              {homePageCategory.map((p) => {
-                return <li key={p}>{p}</li>;
-              })}
-            </ul>
+          <ul className="h-10 ml-6  flex items-center gap-10 font-bold text-sm">
+            {homePageCategory.map((p) => {
+              return <li key={p}>{p}</li>;
+            })}
+          </ul>
         </div>
       </header>
 
@@ -39,35 +39,17 @@ export default function Home() {
             </div>
           </div>
           <div className="m-4 flex flex-col gap-10">
-            <div className="">
-              <div className="flex gap-2 items-center">
-                <h1 className="font-bold  text-3xl">
-                  Hot New Releases in Electronics
-                </h1>
-                <p className="text-cyan-700 mt-2 text-sm">See More</p>
-              </div>
-              <Card />
-            </div>
-
-            <div className="">
-              <div className="flex gap-2 items-center">
-                <h1 className="font-bold  text-3xl">
-                  Hot New Releases in Home & Kitchen
-                </h1>
-                <p className="text-cyan-700 mt-2 text-sm">See More</p>
-              </div>
-              <Card />
-            </div>
-
-            <div className="">
-              <div className="flex gap-2 items-center">
-                <h1 className="font-bold  text-3xl">
-                  Hot New Releases in Health & Personal Care
-                </h1>
-                <p className="text-cyan-700 mt-2 text-sm">See More</p>
-              </div>
-              <Card />
-            </div>
+            {GridList.map((elem: string) => {
+              return (
+                <div key={elem}>
+                  <div className="flex gap-2 items-center">
+                    <h1 className="font-bold  text-3xl">{elem}</h1>
+                    <p className="text-cyan-700 mt-2 text-sm">See More</p>
+                  </div>
+                  <Card />
+                </div>
+              );
+            })}
           </div>
         </div>
       </main>

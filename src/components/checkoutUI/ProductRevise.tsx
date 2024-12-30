@@ -1,28 +1,6 @@
-"use client";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ResponseData } from "../HomePageUI/Cards";
+import { ResponseData } from "../HomepageUI/Cards";
 
-const ProductRevise = () => {
-  const params = useParams();
-  const id = JSON.parse(JSON.stringify(params));
-  const [value, setValue] = useState<ResponseData>();
-  const [ismount, setMount] = useState(false);
-
-  useEffect(() => {
-    let getData = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products/${id.slug}`);
-      const responeData: ResponseData = await res.json();
-      setValue(responeData);
-      setMount(true);
-    };
-
-    getData();
-  }, []);
-
-  if (!ismount) {
-    return <p>Loading..</p>;
-  }
+const ProductRevise = ({value}:{value:ResponseData|undefined}) => {
   return (
     <div className="flex justify-between text-base">
       <div className="w-3/4 flex flex-col gap-3">
@@ -34,7 +12,7 @@ const ProductRevise = () => {
             shipping information.<span className="text-cyan-700">Details</span>
           </p>
         </div>
-        <div className="flex gap-2 h-[65px] overflow-hidden">
+        <div className="flex gap-5 h-[70px] overflow-hidden">
           <img src={value?.image} alt="" width={50}/>
           <p>{value?.category}||{value?.description}</p>
         </div>

@@ -1,13 +1,36 @@
+"use client";
 import CheckoutHead from "@/components/checkoutUI/CheckoutHead";
 import Payment from "@/components/checkoutUI/Payment";
 import ProductBill from "@/components/checkoutUI/ProductBill";
 import ProductRevise from "@/components/checkoutUI/ProductRevise";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ResponseData } from "@/components/HomepageUI/Cards";
 
 const Checkout = () => {
+  const params = useParams();
+  const id = JSON.parse(JSON.stringify(params));
+  const [value, setValue] = useState<ResponseData>();
+  const [ismount, setMount] = useState(false);
+
+  useEffect(() => {
+    let getData = async () => {
+      const res = await fetch(`https://fakestoreapi.com/products/${id.slug}`);
+      const responeData: ResponseData = await res.json();
+      setValue(responeData);
+      setMount(true);
+    };
+
+    getData();
+  }, []);
+
+  if (!ismount) {
+    return <p>Loading..</p>;
+  }
+
   return (
     <div className="bg-[#F8F8F8]">
       <CheckoutHead />
-
       <div className="flex mx-32 my-10 justify-around">
         <div className="w-3/5 flex flex-col gap-5">
           <div className="flex bg-white h-fit gap-2 p-6">
@@ -34,12 +57,12 @@ const Checkout = () => {
           </div>
 
           <div className="bg-white gap-2 p-6 h-fit">
-            <ProductRevise />
+            <ProductRevise value={value}/>
           </div>
         </div>
 
         <div className="bg-white p-5 h-fit">
-          <ProductBill />
+          <ProductBill rate={value?.price}/>
         </div>
       </div>
     </div>

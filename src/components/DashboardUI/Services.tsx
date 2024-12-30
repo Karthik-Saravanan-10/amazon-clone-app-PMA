@@ -1,5 +1,3 @@
-import { Url } from "next/dist/shared/lib/router/router";
-
 interface Imagedata {
   img: string;
   content: string|number;

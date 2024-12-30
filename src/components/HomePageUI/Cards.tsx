@@ -1,7 +1,7 @@
-"use client";
+  "use client";
 
 import { createRef, useEffect, useState } from "react";
-import FetchData from "@/components/HomePageUI/FetchData";
+import FetchData from "@/components/HomepageUI/FetchData";
 
 export interface ResponseData {
   id: number;
@@ -55,8 +55,6 @@ const Card = () => {
     observer.observe(innerContainer);
     observer.observe(outerContainer);
     console.log("clicked");
-
-    setMount(true);
 
     return () => observer.disconnect();
   }, [innerContainerRef.current, outerContainerRef.current]);
