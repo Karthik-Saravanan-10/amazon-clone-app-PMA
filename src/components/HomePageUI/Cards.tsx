@@ -3,7 +3,7 @@
 import { createRef, useEffect, useState } from "react";
 import FetchData from "@/components/HomePageUI/FetchData";
 
-interface ResponseData {
+export interface ResponseData {
   id: number;
   title: string;
   price: number;

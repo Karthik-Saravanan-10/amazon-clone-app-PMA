@@ -33,7 +33,7 @@ export default function Home() {
               </p>
               <div className="pl-2 font-medium">
                 {homePageSideNavCategory.map((p) => {
-                  return <p>{p}</p>;
+                  return <p key={p}>{p}</p>;
                 })}
               </div>
             </div>

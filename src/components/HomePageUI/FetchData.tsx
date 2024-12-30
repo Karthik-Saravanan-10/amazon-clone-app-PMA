@@ -1,17 +1,7 @@
 "use client";
 import Starcount from "@/components/HomePageUI/Starcount";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-interface ResponseData {
-  id: number;
-  title: string;
-  price: number;
-  description: string | number;
-  category: string;
-  image: string;
-  rating: { rate: number; count: number };
-}
 
 const FetchData = ({value}:any) => {
   return (

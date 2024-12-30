@@ -25,14 +25,14 @@ export default async function Dashboard({ params }: any) {
         <div className="flex gap-8 text-[#333]  text-sm shadow-md p-3 pl-5">
           <p className="font-bold">Electronics</p>
           {homePageSideNavCategory.slice(2, 11).map((p) => {
-            return <p>{p}</p>;
+            return <p key={p}>{p}</p>;
           })}
         </div>
       </header>
       <main className="mb-10">
         <p className="text-xs tracking-wide mt-2">
           Electronics›Mobiles & Accessories›Smartphones & Basic
-          Mobiles›Smartphones
+          Mobiles›{fetchSingleData[0]?.category}
         </p>
 
         <div className="flex gap-16">
@@ -40,9 +40,9 @@ export default async function Dashboard({ params }: any) {
             <div className="ml-2 mt-10 ">
               {Array(Math.round(fetchSingleData[0]?.rating?.rate))
                 .fill(fetchSingleData[0].image)
-                .map((elem) => {
+                .map((elem,index) => {
                   return (
-                    <div className="p-3 rounded-xl border-2 mt-5">
+                    <div className="p-3 rounded-xl border-2 mt-5" key={index}>
                       <img src={elem} alt="" height={25} width={25} />
                     </div>
                   );

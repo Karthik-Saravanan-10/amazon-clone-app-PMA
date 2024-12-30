@@ -1,12 +1,13 @@
 import CheckoutHead from "@/components/checkoutUI/CheckoutHead";
 import Payment from "@/components/checkoutUI/Payment";
 import ProductBill from "@/components/checkoutUI/ProductBill";
+import ProductRevise from "@/components/checkoutUI/ProductRevise";
 
 const Checkout = () => {
   return (
     <div className="bg-[#F8F8F8]">
       <CheckoutHead />
-      
+
       <div className="flex mx-32 my-10 justify-around">
         <div className="w-3/5 flex flex-col gap-5">
           <div className="flex bg-white h-fit gap-2 p-6">
@@ -31,10 +32,14 @@ const Checkout = () => {
               </button>
             </div>
           </div>
+
+          <div className="bg-white gap-2 p-6 h-fit">
+            <ProductRevise />
+          </div>
         </div>
 
         <div className="bg-white p-5 h-fit">
-          <ProductBill/>
+          <ProductBill />
         </div>
       </div>
     </div>

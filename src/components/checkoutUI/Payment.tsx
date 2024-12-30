@@ -32,6 +32,7 @@ const Payment = () => {
           </div>
         </label>
       </div>
+
       <div className="flex gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +54,67 @@ const Payment = () => {
         <button className="border-2 rounded-2xl  border-[#888c8c] text-sm px-3">
           Apply
         </button>
+      </div>
+
+      <div className="mt-5">
+        <h3 className="font-semibold border-b-2">Another payment method</h3>
+
+        <div className="flex gap-3 items-baseline p-2 mb-4">
+          <input type="radio" name="" id="checkBox" />
+          <label htmlFor="checkBox" className="w-72">
+            <p className="font-semibold text-sm mb-1">Credit or debit card</p>
+          </label>
+        </div>
+
+        <div className="flex gap-3 items-baseline p-2 mb-4">
+          <input type="radio" name="" id="checkBox" />
+          <label htmlFor="checkBox" className="w-72">
+            <p className="font-semibold text-sm mb-1">Net Banking</p>
+            <div className="flex gap-1">
+              <select
+                className="w-40 border-2 rounded h-8 bg-[#E3E6E6] p-1 text-sm"
+                id="selectBox-2"
+              >
+                <option value="">Choose an Option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+          </label>
+        </div>
+
+        <div className="flex gap-3 items-baseline p-2 mb-4">
+          <input type="radio" name="" id="checkBox" />
+          <label htmlFor="checkBox" className="w-72">
+            <p className="font-semibold text-sm mb-1">Other UPI Apps</p>
+            <div className="flex gap-1"></div>
+          </label>
+        </div>
+
+        <div className="flex gap-3 items-baseline p-2 mb-4">
+          <input type="radio" name="" id="checkBox" />
+          <label htmlFor="checkBox" className="w-72">
+            <p className="font-semibold text-sm mb-1">EMI</p>
+            <div className="flex gap-1"></div>
+          </label>
+        </div>
+
+        <div className="flex gap-3 items-baseline p-2 mb-4">
+          <input type="radio" name="" id="checkBox" />
+          <label htmlFor="checkBox">
+            <p className="font-semibold text-sm mb-1">
+              Cash on Delivery/Pay on Delivery
+            </p>
+            <div className="flex gap-1">
+              <p className="text-green-600 text-sm">
+                Scan & Pay at delivery with Amazon Pay UPI and get cashback up
+                to ₹10.<span className="text-cyan-700">Know more.</span>
+              </p>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
   );
