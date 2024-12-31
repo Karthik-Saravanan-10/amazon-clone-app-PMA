@@ -6,16 +6,17 @@ import ProductRevise from "@/components/checkoutUI/ProductRevise";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResponseData } from "@/components/HomepageUI/Cards";
+import Loading from "@/components/Loading";
 
 const Checkout = () => {
   const params = useParams();
-  const id = JSON.parse(JSON.stringify(params));
+  const id: { slug: string } = JSON.parse(JSON.stringify(params));
+  let [productID, productCount] = id.slug.split("-");
   const [value, setValue] = useState<ResponseData>();
   const [ismount, setMount] = useState(false);
-
   useEffect(() => {
     let getData = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products/${id.slug}`);
+      const res = await fetch(`https://fakestoreapi.com/products/${productID}`);
       const responeData: ResponseData = await res.json();
       setValue(responeData);
       setMount(true);
@@ -25,7 +26,11 @@ const Checkout = () => {
   }, []);
 
   if (!ismount) {
-    return <p>Loading..</p>;
+    return <Loading />;
+  }
+
+  if (isNaN(Number(productCount))) {
+    productCount = "1";
   }
 
   return (
@@ -57,12 +62,12 @@ const Checkout = () => {
           </div>
 
           <div className="bg-white gap-2 p-6 h-fit">
-            <ProductRevise value={value}/>
+            <ProductRevise value={value} />
           </div>
         </div>
 
         <div className="bg-white p-5 h-fit">
-          <ProductBill rate={value?.price}/>
+          <ProductBill rate={value?.price} count={productCount} />
         </div>
       </div>
     </div>

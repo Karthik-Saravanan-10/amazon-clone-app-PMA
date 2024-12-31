@@ -39,6 +39,13 @@ export const GridList = [
   "Hot New Releases in Home & Kitchen",
   "Hot New Releases in Health & Personal Care",
 ];
+
+export const Share = [
+  "Delete",
+  "Save for Later",
+  "See more like this",
+  "share",
+];
 [
   {
     id: 1,

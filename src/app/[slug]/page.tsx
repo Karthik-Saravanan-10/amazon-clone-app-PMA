@@ -1,16 +1,34 @@
+"use client";
 import FetchData from "@/components/HomepageUI/FetchData";
 import FilterRequirements from "@/components/DashboardUI/FilterRequirements";
 import HeaderPage from "@/components/HomepageUI/HeaderPage";
 import { homePageSideNavCategory } from "@/components/lists/informations";
 import Services from "@/components/DashboardUI/Services";
 import Starcount from "@/components/HomepageUI/Starcount";
-import { useId } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { ResponseData } from "@/components/HomepageUI/Cards";
+import Loading from "@/components/Loading";
 
-export default async function Dashboard({ params }: any) {
-  const parameter = await params;
-  const res = await fetch(`https://fakestoreapi.com/products/${parameter.slug}`);
-  const fetchSingleData = await res.json();
+export default function Dashboard({ params }: any) {
+  const [fetchSingleData, setfetchSingleData] = useState<ResponseData>();
+  const [isMount, setMount] = useState(false);
+  useEffect(() => {
+    async function getData() {
+      const parameter = await params;
+      const res = await fetch(
+        `https://fakestoreapi.com/products/${parameter.slug}`
+      );
+      setfetchSingleData(await res.json());
+      setMount(true);
+    }
+    getData();
+  }, []);
+
+  if (!isMount || !fetchSingleData?.id) {
+    return <Loading />;
+  }
+
   return (
     <>
       <header>
@@ -24,8 +42,8 @@ export default async function Dashboard({ params }: any) {
       </header>
       <main className="mb-10">
         <p className="text-xs tracking-wide mt-2">
-          Electronics›Mobiles & Accessories›Smartphones & Basic
-          Mobiles›{fetchSingleData?.category}
+          Electronics›Mobiles & Accessories›Smartphones & Basic Mobiles›
+          {fetchSingleData?.category}
         </p>
 
         <div className="flex gap-16">
@@ -33,7 +51,7 @@ export default async function Dashboard({ params }: any) {
             <div className="ml-2 mt-10 ">
               {Array(Math.round(fetchSingleData?.rating?.rate))
                 .fill(fetchSingleData.image)
-                .map((elem,index) => {
+                .map((elem, index) => {
                   return (
                     <div className="p-3 rounded-xl border-2 mt-5" key={index}>
                       <img src={elem} alt="" height={25} width={25} />
@@ -84,7 +102,7 @@ export default async function Dashboard({ params }: any) {
                 {Array(Math.round(fetchSingleData?.rating?.rate))
                   .fill(<Starcount />)
                   .map((_, i) => (
-                    <Starcount />
+                    <Starcount key={i}/>
                   ))}
                 <div>
                   <svg
@@ -265,11 +283,16 @@ export default async function Dashboard({ params }: any) {
             <div className="flex flex-col mt-5">
               <h1 className="font-bold text-xl">About</h1>
               <ul className="ml-5">
-                {fetchSingleData?.description
-                  .split(",")
-                  .map((elem: string) => {
-                    return <li className="list-disc">{elem}</li>;
-                  })}
+                {fetchSingleData?.description.split(",").map((elem: string,i) => {
+                  return (
+                    <li
+                      className="list-disc"
+                      key={i}
+                    >
+                      {elem}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -278,8 +301,7 @@ export default async function Dashboard({ params }: any) {
             <p className="text-3xl mb-1">
               <sup className="text-sm">₹</sup>
               {Math.round(
-                fetchSingleData?.price * 10 -
-                  fetchSingleData?.price * 10 * 0.17
+                fetchSingleData?.price * 10 - fetchSingleData?.price * 10 * 0.17
               )}
             </p>
             <div className="flex items-center bg-[#3e4650] w-fit px-1 border-triangle tr-10 text-sm gap-1 ">
@@ -365,13 +387,17 @@ export default async function Dashboard({ params }: any) {
             </div>
 
             <div className="flex flex-col gap-2 mt-3 text-sm">
-              <button className="bg-yellow-300 rounded-xl py-1">
-                Add to Cart
-              </button>
-              <Link href={`${fetchSingleData.id}/checkout`} className="bg-orange-500 rounded-xl py-1 text-center">
-                <button>
-                  Buy Now
-                </button>
+              <Link
+                href={`${fetchSingleData.id}/cart`}
+                className="bg-yellow-300 rounded-xl py-1 text-center"
+              >
+                <button>Add to Cart</button>
+              </Link>
+              <Link
+                href={`${fetchSingleData.id}/checkout`}
+                className="bg-orange-500 rounded-xl py-1 text-center"
+              >
+                <button>Buy Now</button>
               </Link>
             </div>
 
