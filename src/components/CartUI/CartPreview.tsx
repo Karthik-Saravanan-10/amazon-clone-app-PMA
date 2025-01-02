@@ -138,7 +138,7 @@ const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
                 <div className="flex gap-1">
                   <p className="text-red-700 font-bold">-17%</p>
                   <p className="font-thin">
-                    M.R.P.:₹<del>{data?.price * 10}</del>
+                    M.R.P.:₹<del>{Math.round(data?.price) * 10}</del>
                   </p>
                 </div>
               </div>

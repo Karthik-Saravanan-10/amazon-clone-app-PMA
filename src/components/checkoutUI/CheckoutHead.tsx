@@ -1,18 +1,21 @@
 import Image from "next/image";
 import amazonLogo from "@/components/images/amazon-logo.png";
+import Link from "next/link";
 
 const CheckoutHead = () => {
   return (
     <div className="h-15 bg-black text-white p-3 flex justify-between">
-      <div className="flex pr-2 items-start">
-        <Image
-          src={amazonLogo}
-          alt="amzon logo"
-          className="bg-black"
-          width={100}
-        />
-        <p className="mt-2">.in</p>
-      </div>
+      <Link href={"/"}>
+        <div className="flex pr-2 items-start">
+          <Image
+            src={amazonLogo}
+            alt="amzon logo"
+            className="bg-black"
+            width={100}
+          />
+          <p className="mt-2">.in</p>
+        </div>
+      </Link>
 
       <div className="flex gap-1 items-center">
         <h1 className="text-3xl">Secure Checkout</h1>

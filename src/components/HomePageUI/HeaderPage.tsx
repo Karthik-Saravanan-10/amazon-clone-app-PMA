@@ -1,20 +1,23 @@
 import Image from "next/image";
 import amazonLogo from "@/components/images/amazon-logo.png";
+import Link from "next/link";
 
 export default function HeaderPage() {
   return (
     <>
-      <div className="w-full ">
+      <div className="w-full">
         {/* 1st header */}
         <div className="topHeader  p-2 flex text-white bg-black gap-5">
-          <div className="flex pr-2 items-start">
-            <Image
-              src={amazonLogo}
-              alt="amzon logo"
-              className="w-full h-12 bg-black"
-            />
-            <p className="mt-2">.in</p>
-          </div>
+          <Link href={"/"}>
+            <div className="flex pr-2 items-start">
+              <Image
+                src={amazonLogo}
+                alt="amzon logo"
+                className="w-full h-12 bg-black"
+              />
+              <p className="mt-2">.in</p>
+            </div>
+          </Link>
 
           <div className="flex gap-1 items-end">
             <svg

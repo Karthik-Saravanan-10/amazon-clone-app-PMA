@@ -7,6 +7,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResponseData } from "@/components/HomepageUI/Cards";
 import Loading from "@/components/Loading";
+import DeliverPlace from "@/components/checkoutUI/PlacePopUp";
+import { AddressContainer } from "@/components/lists/informations";
 
 const Checkout = () => {
   const params = useParams();
@@ -14,6 +16,7 @@ const Checkout = () => {
   let [productID, productCount] = id.slug.split("-");
   const [value, setValue] = useState<ResponseData>();
   const [ismount, setMount] = useState(false);
+  const [isPop, setPopUp] = useState(false);
   useEffect(() => {
     let getData = async () => {
       const res = await fetch(`https://fakestoreapi.com/products/${productID}`);
@@ -25,6 +28,10 @@ const Checkout = () => {
     getData();
   }, []);
 
+  function popedUp() {
+    setPopUp((prev) => !prev);
+  }
+
   if (!ismount) {
     return <Loading />;
   }
@@ -34,42 +41,55 @@ const Checkout = () => {
   }
 
   return (
-    <div className="bg-[#F8F8F8]">
-      <CheckoutHead />
-      <div className="flex mx-32 my-10 justify-around">
-        <div className="w-3/5 flex flex-col gap-5">
-          <div className="flex bg-white h-fit gap-2 p-6">
-            <div>
-              <h3 className="font-semibold text-lg">Delivering to Geetha</h3>
-              <p>
-                Plot no.27,SV Castle,S2,2nd floor, Raja nagar,s.kolathur,
-                Kovilambakkam, CHENNAI, TAMIL NADU, 600117, India
-              </p>
-              <p className="text-cyan-700">Add delivery instructions</p>
+    <div>
+      <div className="bg-[#F8F8F8] z-0">
+        <CheckoutHead />
+        <div className="flex mx-32 my-10 justify-around">
+          <div className="w-3/5 flex flex-col gap-5">
+            <div className="flex bg-white h-fit justify-between p-6">
+              <div>
+                <h3 className="font-semibold text-lg">Delivering to Geetha</h3>
+                <p>
+                  {AddressContainer[0] ||
+                    "Plot no.27,SV Castle,S2,2nd floor, Raja nagar,s.kolathur,Kovilambakkam, CHENNAI, TAMIL NADU, 600117, India"}
+                </p>
+                <p className="text-cyan-700">Add delivery instructions</p>
+              </div>
+              <div>
+                <button className="text-cyan-700" onClick={popedUp}>
+                  Change
+                </button>
+              </div>
             </div>
-            <div>
-              <p className="text-cyan-700">Change</p>
+            <div className="flex flex-col bg-white h-fit gap-2 p-6">
+              <h3 className="font-semibold text-lg">Payment Method</h3>
+              <Payment />
+              <div>
+                <button className="bg-yellow-300 p-3 py-1 px-8 rounded-3xl text-sm">
+                  Use this payment method
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col bg-white h-fit gap-2 p-6">
-            <h3 className="font-semibold text-lg">Payment Method</h3>
-            <Payment />
-            <div>
-              <button className="bg-yellow-300 p-3 py-1 px-8 rounded-3xl text-sm">
-                Use this payment method
-              </button>
+
+            <div className="bg-white gap-2 p-6 h-fit">
+              <ProductRevise value={value} />
             </div>
           </div>
 
-          <div className="bg-white gap-2 p-6 h-fit">
-            <ProductRevise value={value} />
+          <div className="bg-white p-5 h-fit">
+            <ProductBill rate={value?.price} count={productCount} />
           </div>
-        </div>
-
-        <div className="bg-white p-5 h-fit">
-          <ProductBill rate={value?.price} count={productCount} />
         </div>
       </div>
+      {isPop ? (
+        <div className="absolute top-0 bottom-0 w-full h-[175%] z-99 bg-[rgba(0,0,0,0.4)]">
+          <div className="flex justify-center mt-72">
+            <DeliverPlace func={popedUp} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

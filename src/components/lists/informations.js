@@ -46,6 +46,9 @@ export const Share = [
   "See more like this",
   "share",
 ];
+
+export const AddressContainer = [];
+
 [
   {
     id: 1,
@@ -105,5 +108,5 @@ export const Share = [
     ],
     thumbnail:
       "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
-  }
+  },
 ];
