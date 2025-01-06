@@ -24,11 +24,11 @@ const ProductBill = ({
 
   return (
     <>
-      <div className="border-b-2 pb-4 text-center">
+      {/* <div className="border-b-2 pb-4 text-center">
         <button className="bg-yellow-300 p-3 py-1 px-8 rounded-3xl text-sm">
           Use this payment method
         </button>
-      </div>
+      </div> */}
       <div className="flex flex-col gap-1 p-3 text-sm">
         <div className="flex gap-5 justify-between">
           <p>Items:</p>

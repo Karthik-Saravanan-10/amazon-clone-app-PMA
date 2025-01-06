@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { UPIName } from "../lists/informations";
 import SuccessPlace from "./SucessPopup";
+import WaitingProcess from "./WaitingProcess";
 
-const CreditCard = () => {
+const UPIPayment = () => {
   const [data, setData] = useState("");
   const [isPresent, SetPresent] = useState(false);
   const [isValid, setValid] = useState(true);
+  const [loading, setLoading] = useState(true);
   function dataHandler() {
     const isPresent = UPIName.filter((elem) => elem == data);
     setData("");
@@ -17,6 +19,16 @@ const CreditCard = () => {
       setValid(false);
     }
   }
+
+  if (isPresent) {
+    window.scroll({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      console.log("ok");
+      setLoading(false);
+    }, 3500);
+  }
+
+  const DataDiv = loading ? <WaitingProcess /> : <SuccessPlace />;
   return (
     <>
       <div className="flex flex-col gap-1 ">
@@ -45,7 +57,7 @@ const CreditCard = () => {
       </div>
       {isPresent ? (
         <div className="absolute top-0 pt-52 pl-[35%] bottom-[-750px] left-0 w-full bg-[rgba(0,0,0,0.4)]">
-          <SuccessPlace />
+          {DataDiv}
         </div>
       ) : (
         ""
@@ -54,4 +66,4 @@ const CreditCard = () => {
   );
 };
 
-export default CreditCard;
+export default UPIPayment;

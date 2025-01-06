@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const SuccessPlace = () => {
   return (
-    <div className="flex flex-col gap-14 bg-white text-black rounded-xl boxShadow  w-96 h-96 ">
+    <div className="flex flex-col gap-14 bg-white text-black rounded-xl boxShadow  w-96 h-80 ">
       <div className="bg-[#4f46e5] h-40 pl-40 rounded-t-xl">
         <div className="flex justify-end p-2">
           <Link href={"/"}>

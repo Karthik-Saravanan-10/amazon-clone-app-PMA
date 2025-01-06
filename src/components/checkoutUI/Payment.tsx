@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import CreditCard from "./CreditcardPayment";
+import UPIPayment from "./UPIPayment";
 import SuccessPlace from "./SucessPopup";
 import { radioBtn } from "../lists/informations";
+import WaitingProcess from "./WaitingProcess";
+import CardPayment from "./CardPayment";
 
 const Payment = () => {
   const [radio, setRadio] = useState("");
   const [payment, setPayment] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log(radio);
     const check = radioBtn.filter((elem) => elem == radio);
@@ -16,6 +19,16 @@ const Payment = () => {
       setPayment(false);
     }
   }, [radio]);
+
+  if (clicked) {
+    window.scroll({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      console.log("ok");
+      setLoading(false);
+    }, 3500);
+  }
+
+  const DataDiv = loading ? <WaitingProcess /> : <SuccessPlace />;
 
   return (
     <>
@@ -104,6 +117,7 @@ const Payment = () => {
             />
             <label htmlFor="Radio_2" className="w-72">
               <p className="font-semibold text-sm mb-1">Credit or debit card</p>
+              {radio == "Radio_2" ? <CardPayment /> : ""}
             </label>
           </div>
 
@@ -150,7 +164,7 @@ const Payment = () => {
             />
             <label htmlFor="Radio_4" className="w-72">
               <p className="font-semibold text-sm mb-1">Other UPI Apps</p>
-              {radio == "Radio_4" ? <CreditCard /> : ""}
+              {radio == "Radio_4" ? <UPIPayment /> : ""}
             </label>
           </div>
 
@@ -175,7 +189,7 @@ const Payment = () => {
                     className="w-40 border-2 rounded h-8 bg-[#E3E6E6] p-1 text-sm"
                     id="selectBox-2"
                   >
-                    <option value="">Select EMI Options</option>
+                    <option value="">₹ 100/ month</option>
                   </select>
                 </div>
               ) : (
@@ -221,8 +235,8 @@ const Payment = () => {
         </button>
       </div>
       {payment && clicked ? (
-        <div className="absolute top-0 pt-52 pl-[35%] bottom-[-750px] left-0 w-full bg-[rgba(0,0,0,0.4)]">
-          <SuccessPlace />
+        <div className="absolute top-0 pt-52 pl-[35%] bottom-[-750px] left-0 w-full bg-[rgba(0,0,0,0.4)] scroll-0">
+          {DataDiv}
         </div>
       ) : (
         ""

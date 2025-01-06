@@ -50,7 +50,7 @@ export const UPIName: string[] = ["12345678@vskbank", "karthikvs@xyzbank"];
 
 export const radioBtn: string[] = ["Radio_2", "Radio_3", "Radio_5", "Radio_6"]
 
-export const AddressContainer: string[] = [];
+export const AddressContainer: { name: string, address: string }[] = [];
 
 [
   {
