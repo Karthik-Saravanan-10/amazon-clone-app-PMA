@@ -2,21 +2,13 @@
 
 import { createRef, useEffect, useState } from "react";
 import FetchData from "@/components/HomepageUI/FetchData";
+import { ResponseData } from "../lists/Interface";
 
-export interface ResponseData {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: { rate: number; count: number };
-}
 
 const Card = () => {
   const innerContainerRef = createRef<HTMLDivElement | null>();
   const outerContainerRef = createRef<HTMLDivElement | null>();
-  const [value, setValue] = useState<ResponseData[]>();
+  const [value, setValue] = useState<ResponseData[]>([]);
   const [ismount, setMount] = useState(false);
 
   function scrollLeft() {
@@ -62,7 +54,7 @@ const Card = () => {
   if (!ismount) {
     return (
       <div className="text-center mt-3">
-        <p>Loading....</p>
+        <p className="animate-pulse">Loading....</p>
       </div>
     );
   }

@@ -1,11 +1,10 @@
-const FilterRequirements = ({ category }: any) => {
-  const varity = ["clothing", "jewelery", "electronics"];
-
-  const content = varity.filter((elem) => {
+import { varity } from "../lists/informations";
+const FilterRequirements = ({ category }: { category: string }) => {
+  const content = varity.filter((elem: string) => {
     return category.includes(elem);
   });
 
-  const clothing = (
+  const clothing: React.ReactNode = (
     <div>
       <p className="font-bold text-sm">Size:</p>
       <select
@@ -20,7 +19,7 @@ const FilterRequirements = ({ category }: any) => {
     </div>
   );
 
-  const electronics = (
+  const electronics: React.ReactNode = (
     <div>
       <p className="font-bold text-sm">Storage:</p>
       <select

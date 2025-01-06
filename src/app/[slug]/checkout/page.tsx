@@ -5,18 +5,18 @@ import ProductBill from "@/components/checkoutUI/ProductBill";
 import ProductRevise from "@/components/checkoutUI/ProductRevise";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ResponseData } from "@/components/HomepageUI/Cards";
 import Loading from "@/components/Loading";
 import DeliverPlace from "@/components/checkoutUI/PlacePopUp";
 import { AddressContainer } from "@/components/lists/informations";
+import { ResponseData } from "@/components/lists/Interface";
 
 const Checkout = () => {
   const params = useParams();
   const id: { slug: string } = JSON.parse(JSON.stringify(params));
   let [productID, productCount] = id.slug.split("-");
   const [value, setValue] = useState<ResponseData>();
-  const [ismount, setMount] = useState(false);
-  const [isPop, setPopUp] = useState(false);
+  const [ismount, setMount] = useState<boolean>(false);
+  const [isPop, setPopUp] = useState<boolean>(false);
   useEffect(() => {
     let getData = async () => {
       const res = await fetch(`https://fakestoreapi.com/products/${productID}`);

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ResponseData } from "../HomepageUI/Cards";
 import Link from "next/link";
 import ShareLink from "./ShareLinkProduct";
+import { ResponseData } from "../lists/Interface";
 
 const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
   const [count, setCount] = useState<number>(1);

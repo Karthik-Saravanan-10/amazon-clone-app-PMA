@@ -1,12 +1,13 @@
 "use client";
 import Starcount from "@/components/HomepageUI/Starcount";
 import Link from "next/link";
+import { ResponseData } from "../lists/Interface";
 
 
-const FetchData = ({value}:any) => {
+const FetchData = ({value}:{value:ResponseData[]}) => {
   return (
     <>
-      {value?.map((elem: any) => {
+      {value?.map((elem: ResponseData) => {
         return (
           <div className="min-w-56 max-w-56" key={elem.id}>
             <p className="bg-orange-500 w-fit px-2 text-white mb-4">

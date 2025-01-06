@@ -13,7 +13,7 @@ export default function Home() {
         <HeaderPage />
         <div className="bottomHeader border-b-2 mx-4">
           <ul className="h-10 ml-6  flex items-center gap-10 font-bold text-sm">
-            {homePageCategory.map((p) => {
+            {homePageCategory.map((p:string) => {
               return <li key={p}>{p}</li>;
             })}
           </ul>
@@ -32,7 +32,7 @@ export default function Home() {
                 <b>Any Department</b>
               </p>
               <div className="pl-2 font-medium">
-                {homePageSideNavCategory.map((p) => {
+                {homePageSideNavCategory.map((p:string) => {
                   return <p key={p}>{p}</p>;
                 })}
               </div>

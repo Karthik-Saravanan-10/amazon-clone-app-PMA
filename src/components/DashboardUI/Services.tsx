@@ -1,7 +1,4 @@
-interface Imagedata {
-  img: string;
-  content: string|number;
-};
+import { Imagedata } from "../lists/Interface";
 
 const Services = () => {
   const imgData: Imagedata[] = [
@@ -28,7 +25,7 @@ const Services = () => {
   ];
   return (
     <div className="flex text-xs font-medium mt-3 border-b-2 pb-2">
-      {imgData?.map((elem:Imagedata) => {
+      {imgData?.map((elem: Imagedata) => {
         return (
           <div className="flex flex-col items-center" key={elem.content}>
             <img src={elem.img} alt="" width={32} height={32} />

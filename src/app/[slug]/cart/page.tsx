@@ -1,7 +1,7 @@
 "use client";
 import CartPreview from "@/components/CartUI/CartPreview";
-import { ResponseData } from "@/components/HomepageUI/Cards";
 import HeaderPage from "@/components/HomepageUI/HeaderPage";
+import { ResponseData } from "@/components/lists/Interface";
 import Loading from "@/components/Loading";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -34,3 +34,4 @@ const Cart = () => {
 };
 
 export default Cart;
+  

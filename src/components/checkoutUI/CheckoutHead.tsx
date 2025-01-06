@@ -5,7 +5,7 @@ import Title from "./TitlePopup";
 import { useState } from "react";
 
 const CheckoutHead = () => {
-  const [popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState<boolean>(false);
   function ClickHandler() {
     setPopup((prev) => !prev);
   }

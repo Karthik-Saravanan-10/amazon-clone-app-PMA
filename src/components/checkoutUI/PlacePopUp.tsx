@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { AddressContainer } from "@/components/lists/informations";
+import { addressType } from "../lists/Interface";
 
 const DeliverPlace = ({ func }: { func: any }) => {
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
   function ClickHandler() {
-    const obj = { name: name, address: address };
+    const obj: addressType = { name: name, address: address };
     AddressContainer.unshift(obj);
     func();
     console.log(AddressContainer, address);

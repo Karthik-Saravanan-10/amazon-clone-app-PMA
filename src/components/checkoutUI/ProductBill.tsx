@@ -1,16 +1,10 @@
-import { priceDetails } from "../lists/Interface";
-const ProductBill = ({
-  rate,
-  count,
-}: {
-  rate: any;
-  count: number | string;
-}) => {
+import { priceDetails, productBill } from "../lists/Interface";
+const ProductBill = ({ rate, count }: productBill) => {
   let total: number = 0;
   const priceDetails: priceDetails = {
     originalRate: rate * 10,
     discount: 17,
-    CurrentRate: (rate * 10 - rate * 10 * 0.17)*(Number(count)),
+    CurrentRate: (rate * 10 - rate * 10 * 0.17) * Number(count),
     delivery: 40,
     fee: 7,
     freeDelivery: true,

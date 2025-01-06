@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UPIPayment from "./UPIPayment";
 import SuccessPlace from "./SucessPopup";
 import { radioBtn } from "../lists/informations";
@@ -6,10 +6,10 @@ import WaitingProcess from "./WaitingProcess";
 import CardPayment from "./CardPayment";
 
 const Payment = () => {
-  const [radio, setRadio] = useState("");
-  const [payment, setPayment] = useState(false);
-  const [clicked, setClicked] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [radio, setRadio] = useState<string>("");
+  const [payment, setPayment] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     console.log(radio);
     const check = radioBtn.filter((elem) => elem == radio);
@@ -28,7 +28,11 @@ const Payment = () => {
     }, 3500);
   }
 
-  const DataDiv = loading ? <WaitingProcess /> : <SuccessPlace />;
+  const DataDiv: React.ReactNode = loading ? (
+    <WaitingProcess />
+  ) : (
+    <SuccessPlace />
+  );
 
   return (
     <>

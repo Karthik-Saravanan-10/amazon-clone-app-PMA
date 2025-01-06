@@ -2,8 +2,8 @@ import { useState } from "react";
 import { monthLarge } from "../lists/Date";
 
 const CardPayment = () => {
-  const [popup, setPopup] = useState(false);
-  const [name, setName] = useState("");
+  const [popup, setPopup] = useState<boolean>(false);
+  const [name, setName] = useState<string>("");
   function popupHandler() {
     setName("");
     setPopup((prev) => !prev);
@@ -73,7 +73,7 @@ const CardPayment = () => {
               <div className="flex justify-between">
                 <label htmlFor="date">Expiry Date</label>
                 <select name="date" id="" className="h-7 w-48 border-2">
-                  {monthLarge.map((mon) => (
+                  {monthLarge.map((mon:string) => (
                     <option value={mon} key={mon}>
                       {mon}
                     </option>

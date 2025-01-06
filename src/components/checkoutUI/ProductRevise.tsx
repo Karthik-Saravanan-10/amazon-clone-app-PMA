@@ -1,7 +1,7 @@
-import { ResponseData } from "../HomepageUI/Cards";
 import { ArrivingDate } from "../lists/Date";
+import { ResponseData } from "../lists/Interface";
 
-const ProductRevise = ({ value }: { value: ResponseData | undefined }) => {
+const ProductRevise = ({ value }: { value: ResponseData|undefined }) => {
   return (
     <div className="flex justify-between text-base">
       <div className="w-3/4 flex flex-col gap-3">

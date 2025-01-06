@@ -1,15 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { UPIName } from "../lists/informations";
 import SuccessPlace from "./SucessPopup";
 import WaitingProcess from "./WaitingProcess";
 
 const UPIPayment = () => {
-  const [data, setData] = useState("");
-  const [isPresent, SetPresent] = useState(false);
-  const [isValid, setValid] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<string>("");
+  const [isPresent, SetPresent] = useState<boolean>(false);
+  const [isValid, setValid] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   function dataHandler() {
-    const isPresent = UPIName.filter((elem) => elem == data);
+    const isPresent: string[] = UPIName.filter((elem) => elem == data);
     setData("");
     if (isPresent[0]) {
       SetPresent(true);
@@ -28,7 +28,12 @@ const UPIPayment = () => {
     }, 3500);
   }
 
-  const DataDiv = loading ? <WaitingProcess /> : <SuccessPlace />;
+  const DataDiv: React.ReactNode = loading ? (
+    <WaitingProcess />
+  ) : (
+    <SuccessPlace />
+  );
+  
   return (
     <>
       <div className="flex flex-col gap-1 ">
@@ -48,9 +53,7 @@ const UPIPayment = () => {
             <button onClick={dataHandler}>Verify</button>
           </div>
         </div>
-        <p className="text-red-600 text-sm">
-          {!isValid ? "Invalid Error" : ""}
-        </p>
+        <p className="text-red-600 text-sm">{!isValid ? "Invalid UPI" : ""}</p>
         <p className="text-sm w-[141%]">
           The UPI ID is in the format of name/phone number@bankname
         </p>

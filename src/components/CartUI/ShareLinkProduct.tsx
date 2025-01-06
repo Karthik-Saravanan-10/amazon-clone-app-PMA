@@ -1,6 +1,7 @@
 import { ShareURL } from "../lists/informations";
+import { ShareURLType } from "../lists/Interface";
 
-const ShareLink = ({func}:{func:any}) => {
+const ShareLink = ({ func }: { func: any }) => {
   return (
     <div className="bg-white rounded-2xl">
       <div className="bg-gray-300 flex justify-end p-4 rounded-t-2xl">
@@ -22,7 +23,7 @@ const ShareLink = ({func}:{func:any}) => {
       <div className="p-3">
         <p className="text-xl">Share this product with friends</p>
         <div className="flex gap-7 px-16 py-5">
-          {ShareURL.map((elem) => {
+          {ShareURL.map((elem: ShareURLType) => {
             return (
               <div key={elem.webName} className="cursor-pointer">
                 <img
