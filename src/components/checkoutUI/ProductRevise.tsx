@@ -1,11 +1,14 @@
 import { ResponseData } from "../HomepageUI/Cards";
+import { ArrivingDate } from "../lists/Date";
 
-const ProductRevise = ({value}:{value:ResponseData|undefined}) => {
+const ProductRevise = ({ value }: { value: ResponseData | undefined }) => {
   return (
     <div className="flex justify-between text-base">
       <div className="w-3/4 flex flex-col gap-3">
         <div>
-          <h1 className="text-lg font-semibold">Arriving date</h1>
+          <h1 className="text-lg font-semibold">
+            Arriving date{" " + ArrivingDate}
+          </h1>
           <p>
             We're sorry. Today's deadline for guaranteed accelerated delivery
             has expired. Please reselect your shipping speed to see updated
@@ -13,8 +16,10 @@ const ProductRevise = ({value}:{value:ResponseData|undefined}) => {
           </p>
         </div>
         <div className="flex gap-5 h-[70px] overflow-hidden">
-          <img src={value?.image} alt="" width={50}/>
-          <p>{value?.category}||{value?.description}</p>
+          <img src={value?.image} alt="" width={50} />
+          <p>
+            {value?.category}||{value?.description}
+          </p>
         </div>
       </div>
 

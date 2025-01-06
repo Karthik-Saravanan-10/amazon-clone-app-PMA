@@ -53,10 +53,10 @@ const Checkout = () => {
                   {AddressContainer[0] ||
                     "Plot no.27,SV Castle,S2,2nd floor, Raja nagar,s.kolathur,Kovilambakkam, CHENNAI, TAMIL NADU, 600117, India"}
                 </p>
-                <p className="text-cyan-700">Add delivery instructions</p>
+                <p className="text-cyan-700 hover:underline cursor-pointer">Add delivery instructions</p>
               </div>
               <div>
-                <button className="text-cyan-700" onClick={popedUp}>
+                <button className="text-cyan-700 hover:underline" onClick={popedUp}>
                   Change
                 </button>
               </div>
@@ -64,11 +64,6 @@ const Checkout = () => {
             <div className="flex flex-col bg-white h-fit gap-2 p-6">
               <h3 className="font-semibold text-lg">Payment Method</h3>
               <Payment />
-              <div>
-                <button className="bg-yellow-300 p-3 py-1 px-8 rounded-3xl text-sm">
-                  Use this payment method
-                </button>
-              </div>
             </div>
 
             <div className="bg-white gap-2 p-6 h-fit">
@@ -83,7 +78,7 @@ const Checkout = () => {
       </div>
       {isPop ? (
         <div className="absolute top-0 bottom-0 w-full h-[175%] z-99 bg-[rgba(0,0,0,0.4)]">
-          <div className="flex justify-center mt-72">
+          <div className="flex justify-center mt-56 fixed ml-[550px]">
             <DeliverPlace func={popedUp} />
           </div>
         </div>

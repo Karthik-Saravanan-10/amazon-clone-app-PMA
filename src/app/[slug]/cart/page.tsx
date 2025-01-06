@@ -2,7 +2,6 @@
 import CartPreview from "@/components/CartUI/CartPreview";
 import { ResponseData } from "@/components/HomepageUI/Cards";
 import HeaderPage from "@/components/HomepageUI/HeaderPage";
-import { Share } from "@/components/lists/informations";
 import Loading from "@/components/Loading";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";

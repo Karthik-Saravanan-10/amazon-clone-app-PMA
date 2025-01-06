@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { ResponseData } from "../HomepageUI/Cards";
-import { Share } from "@/components/lists/informations";
 import Link from "next/link";
+import ShareLink from "./ShareLinkProduct";
 
 const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
   const [count, setCount] = useState<number>(1);
+  const [sharebtn, setSharebtn] = useState<Boolean>(false);
   const originalRate: number = data?.price
     ? Number(Math.round(data?.price * 10 - data?.price * 1.7).toFixed(2))
     : 0;
+
+  function SharebtnHandler() {
+    setSharebtn((prev) => !prev);
+  }
   if (!data) {
     return <p>Empty Cart</p>;
   }
@@ -18,7 +23,10 @@ const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
           <div className="border-b-2 flex  justify-between items-end pb-2">
             <div className="flex flex-col gap-1">
               <h2 className="text-3xl">Shopping Cart</h2>
-              <a className="text-cyan-700 hover:underline">
+              <a
+                className="text-cyan-700 hover:underline cursor-pointer"
+                onClick={() => setCount(0)}
+              >
                 Deselect all items
               </a>
             </div>
@@ -29,9 +37,7 @@ const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
 
           {count ? (
             <div className="flex items-start gap-9 border-b-2 text-sm pt-5 pb-14">
-              <div className="mt-24">
-                <input type="checkbox" />
-              </div>
+              <div className="mt-24">{/* <input type="checkbox" /> */}</div>
               <div className="w-44 h-44">
                 <img src={data?.image} alt="" />
               </div>
@@ -118,14 +124,33 @@ const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
                   </div>
 
                   <div>
-                    {Share?.map((p) => (
-                      <a
-                        key={p}
-                        className="border-l-2 px-2 text-cyan-700 hover:underline"
-                      >
-                        {p}
-                      </a>
-                    ))}
+                    <a
+                      className="border-l-2 px-2 text-cyan-700 hover:underline cursor-pointer"
+                      onClick={() => setCount(0)}
+                    >
+                      Delete
+                    </a>
+
+                    <Link
+                      className="border-l-2 px-2 text-cyan-700 hover:underline cursor-pointer"
+                      href={"/"}
+                    >
+                      Save for Later
+                    </Link>
+
+                    <Link
+                      className="border-l-2 px-2 text-cyan-700 hover:underline cursor-pointer"
+                      href={`/${data.id}`}
+                    >
+                      See more like this
+                    </Link>
+
+                    <a
+                      className="border-l-2 px-2 text-cyan-700 hover:underline cursor-pointer"
+                      onClick={SharebtnHandler}
+                    >
+                      Share
+                    </a>
                   </div>
                 </div>
               </div>
@@ -199,11 +224,25 @@ const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
           </div>
           <div className="bg-yellow-300 rounded-2xl p-1 text-center text-sm">
             <Link href={`/${data.id}-${count}/checkout`}>
-              <button disabled={!count} className={`${!count?"cursor-not-allowed":""}`}>Proceed to Buy</button>
+              <button
+                disabled={!count}
+                className={`${!count ? "cursor-not-allowed" : ""}`}
+              >
+                Proceed to Buy
+              </button>
             </Link>
           </div>
         </div>
       </main>
+      {sharebtn ? (
+        <div className="absolute top-0 bottom-0 w-full bg-[rgba(0,0,0,0.4)]">
+          <div className="flex justify-center mt-56 fixed ml-[550px]">
+            <ShareLink func={SharebtnHandler} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };

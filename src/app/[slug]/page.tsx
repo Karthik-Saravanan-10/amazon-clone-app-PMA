@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ResponseData } from "@/components/HomepageUI/Cards";
 import Loading from "@/components/Loading";
+import { ArrivingDateDash } from "@/components/lists/Date";
 
 export default function Dashboard({ params }: any) {
   const [fetchSingleData, setfetchSingleData] = useState<ResponseData>();
@@ -40,13 +41,14 @@ export default function Dashboard({ params }: any) {
           })}
         </div>
       </header>
+
       <main className="mb-10">
         <p className="text-xs tracking-wide mt-2">
           Electronics›Mobiles & Accessories›Smartphones & Basic Mobiles›
           {fetchSingleData?.category}
         </p>
 
-        <div className="flex gap-16">
+        <div className="flex justify-around">
           <div className="flex mt-10 gap-8">
             <div className="ml-2 mt-10 ">
               {Array(Math.round(fetchSingleData?.rating?.rate))
@@ -317,7 +319,7 @@ export default function Dashboard({ params }: any) {
             </div>
             <p className="tracking-wide">
               <span className="underline text-cyan-700">FREE delivery</span>{" "}
-              <b>Wednesday, 1 January</b> on your first order.
+              <b>{ArrivingDateDash}</b> on your first order.
             </p>
             <a className="text-cyan-700 underline mt-2">Details</a>
             <div className="flex gap-2 mt-2">
