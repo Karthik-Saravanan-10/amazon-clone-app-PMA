@@ -1,9 +1,9 @@
 "use client";
 import FilterRequirements from "@/components/DashboardUI/FilterRequirements";
-import HeaderPage from "@/components/HomepageUI/HeaderPage";
+import HeaderPage from "@/components/HomePageUI/HeaderPage";
 import { homePageSideNavCategory } from "@/components/lists/informations";
 import Services from "@/components/DashboardUI/Services";
-import Starcount from "@/components/HomepageUI/Starcount";
+import Starcount from "@/components/HomePageUI/Starcount";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
 import { ResponseData } from "@/components/lists/Interface";

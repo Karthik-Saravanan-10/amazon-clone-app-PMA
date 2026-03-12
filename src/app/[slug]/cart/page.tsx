@@ -1,6 +1,6 @@
 "use client";
 import CartPreview from "@/components/CartUI/CartPreview";
-import HeaderPage from "@/components/HomepageUI/HeaderPage";
+import HeaderPage from "@/components/HomePageUI/HeaderPage";
 import { ResponseData } from "@/components/lists/Interface";
 import Loading from "@/components/Loading";
 import { useParams } from "next/navigation";

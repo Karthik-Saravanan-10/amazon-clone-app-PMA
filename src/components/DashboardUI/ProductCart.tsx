@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrivingDateDash } from "../lists/Date";
 import { ResponseData } from "../lists/Interface";
-import FetchData from "../HomepageUI/FetchData";
+import FetchData from "../HomePageUI/FetchData";
 
 const ProductCart = ({
   fetchSingleData,

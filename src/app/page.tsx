@@ -1,5 +1,5 @@
-import Card from "@/components/HomepageUI/Cards";
-import HeaderPage from "@/components/HomepageUI/HeaderPage";
+import Card from "@/components/HomePageUI/Cards";
+import HeaderPage from "@/components/HomePageUI/HeaderPage";
 import {
   homePageCategory,
   homePageSideNavCategory,
