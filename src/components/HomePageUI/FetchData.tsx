@@ -1,5 +1,5 @@
 "use client";
-import Starcount from "@/components/HomepageUI/Starcount";
+import Starcount from "@/components/HomePageUI/Starcount";
 import Link from "next/link";
 import { ResponseData } from "../lists/Interface";
 
