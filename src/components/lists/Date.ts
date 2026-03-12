@@ -41,9 +41,9 @@ const getDate = new Date();
 const date: number = getDate.getDate();
 const Month: number = getDate.getMonth();
 const Year: number = getDate.getFullYear();
-const Hour: number = getDate.getHours();
-const Minutes: number = getDate.getMinutes();
-const Seconds: number = getDate.getSeconds();
+// const Hour: number = getDate.getHours();
+// const Minutes: number = getDate.getMinutes();
+// const Seconds: number = getDate.getSeconds();
 const Day: number = getDate.getDay();
 
 export const ArrivingDate: string = `${date+1} ${monthSmall[Month]} ${Year}`;

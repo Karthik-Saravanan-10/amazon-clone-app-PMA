@@ -1,7 +1,7 @@
 import { ShareURL } from "../lists/informations";
 import { ShareURLType } from "../lists/Interface";
 
-const ShareLink = ({ func }: { func: any }) => {
+const ShareLink = ({ func }: any) => {
   return (
     <div className="bg-white rounded-2xl">
       <div className="bg-gray-300 flex justify-end p-4 rounded-t-2xl">

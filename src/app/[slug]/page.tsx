@@ -12,7 +12,11 @@ import OffersDiv from "@/components/DashboardUI/OffersDiv";
 import CouponsDiv from "@/components/DashboardUI/CouponsDiv";
 import EmiDiv from "@/components/DashboardUI/EMIDiv";
 
-export default function Dashboard({ params }: any) {
+interface DashboardProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default function Dashboard({ params }: DashboardProps) {
   const [fetchSingleData, setfetchSingleData] = useState<ResponseData>();
   const [isMount, setMount] = useState(false);
   useEffect(() => {

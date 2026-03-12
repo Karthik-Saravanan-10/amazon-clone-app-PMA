@@ -18,7 +18,7 @@ const Checkout = () => {
   const [ismount, setMount] = useState<boolean>(false);
   const [isPop, setPopUp] = useState<boolean>(false);
   useEffect(() => {
-    let getData = async () => {
+    const getData = async () => {
       const res = await fetch(`https://fakestoreapi.com/products/${productID}`);
       const responeData: ResponseData = await res.json();
       setValue(responeData);

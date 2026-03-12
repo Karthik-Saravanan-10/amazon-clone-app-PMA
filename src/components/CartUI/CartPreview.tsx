@@ -5,7 +5,7 @@ import { ResponseData } from "../lists/Interface";
 
 const CartPreview = ({ data }: { data: ResponseData | undefined }) => {
   const [count, setCount] = useState<number>(1);
-  const [sharebtn, setSharebtn] = useState<Boolean>(false);
+  const [sharebtn, setSharebtn] = useState<boolean>(false);
   const originalRate: number = data?.price
     ? Number(Math.round(data?.price * 10 - data?.price * 1.7).toFixed(2))
     : 0;

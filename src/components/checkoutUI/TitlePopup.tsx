@@ -1,4 +1,4 @@
-const Title = ({ func }: { func: any }) => {
+const Title = ({ func }: any) => {
   return (
     <>
       <div className="absolute  w-96 text-sm top-16 left-[40%] text-black bg-white p-3  rounded border-[1px]">
@@ -6,8 +6,8 @@ const Title = ({ func }: { func: any }) => {
           <div>
             <p>
               We secure your payment and personal information when you share or
-              save it with us. We don't share payment details with third-party
-              sellers. We don't sell your information to others.{" "}
+              save it with us. We don/'t share payment details with third-party
+              sellers. We don/'t sell your information to others.{" "}
               <span className="text-cyan-700 hover:underline cursor-pointer">
                 Learn more
               </span>

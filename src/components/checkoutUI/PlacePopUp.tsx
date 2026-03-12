@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AddressContainer } from "@/components/lists/informations";
 import { addressType } from "../lists/Interface";
 
-const DeliverPlace = ({ func }: { func: any }) => {
+const DeliverPlace = ({ func }: any) => {
   const [name, setName] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   function ClickHandler() {

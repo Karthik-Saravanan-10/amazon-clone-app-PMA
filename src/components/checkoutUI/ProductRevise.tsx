@@ -10,7 +10,7 @@ const ProductRevise = ({ value }: { value: ResponseData|undefined }) => {
             Arriving date{" " + ArrivingDate}
           </h1>
           <p>
-            We're sorry. Today's deadline for guaranteed accelerated delivery
+            We/'re sorry. Today/'s deadline for guaranteed accelerated delivery
             has expired. Please reselect your shipping speed to see updated
             shipping information.<span className="text-cyan-700">Details</span>
           </p>

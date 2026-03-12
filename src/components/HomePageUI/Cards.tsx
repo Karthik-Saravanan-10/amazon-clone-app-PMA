@@ -28,7 +28,7 @@ const Card = () => {
   }
 
   useEffect(() => {
-    let getData = async () => {
+    const getData = async () => {
       const res = await fetch("https://fakestoreapi.com/products");
       const responeData: ResponseData[] = await res.json();
       setValue(responeData);
