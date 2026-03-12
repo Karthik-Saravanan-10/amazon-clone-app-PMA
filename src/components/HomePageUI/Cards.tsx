@@ -1,7 +1,7 @@
   "use client";
 
 import { createRef, useEffect, useState } from "react";
-import FetchData from "@/components/HomepageUI/FetchData";
+import FetchData from "@/components/HomePageUI/FetchData";
 import { ResponseData } from "../lists/Interface";
 
 
