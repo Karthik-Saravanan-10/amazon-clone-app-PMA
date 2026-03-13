@@ -21,7 +21,7 @@ export default function Home() {
       </header>
 
       <main className="p-4">
-        <h1 className="font-bold text-3xl mb-1">Amazon Hot New Releases</h1>
+        <h1 className="font-bold text-3xl mb-1">Amazon Clone Hot New Releases</h1>
         <p className="text-sm">
           Our bestselling new and future releases. Updated frequently.
         </p>
